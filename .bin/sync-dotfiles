@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [ ! -d "$HOME/.dotfiles" ];
+then
+  echo "Couldn't locate ~./dotfiles"
+  exit
+fi
+
+cd $HOME/.dotfiles
+git pull
+stow -v --target="$HOME" .
