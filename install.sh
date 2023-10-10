@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 cd $HOME
 git clone https://github.com/jaxsonp/dotfiles.git
