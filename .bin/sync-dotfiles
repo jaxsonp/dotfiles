@@ -9,3 +9,5 @@ fi
 cd $HOME/.dotfiles
 git pull
 stow -v --target="$HOME" .
+
+echo "sync complete"
