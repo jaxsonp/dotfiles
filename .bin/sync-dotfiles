@@ -7,5 +7,4 @@ then
 fi
 
 cd $HOME/.dotfiles
-git pull
-stow -v --target="$HOME" .
+git pull && stow -v --target="$HOME" .
