@@ -14,8 +14,7 @@ This command clones this repository into the home directory and adds a cron job
 
 ## To manually sync
 
-Nothing needs to be done after install
-Run the following command:
+Dotfiles should autosync after install, but to trigger a manual sync run the following command:
 
 ```sh
 sync-dotfiles
