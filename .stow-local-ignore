@@ -1,5 +1,8 @@
 
 
+# install script
+install.sh
+
 # git stuff
 \.git
 \.gitignore
