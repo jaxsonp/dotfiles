@@ -22,7 +22,7 @@ if [ -d ~/.bashrc.d ]; then
 fi
 
 # making it pretty :D
-PS1='[\e[0;36m\u\e[0m: \W] \$ '
+PS1=' [\e[0;36m\u\e[0m: \e[0;37m\W\e[0m] > '
 
 # alias to ssh into data
 alias data="ssh jpahuku@data.cs.purdue.edu"
