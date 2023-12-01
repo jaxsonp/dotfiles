@@ -21,6 +21,9 @@ if [ -d ~/.bashrc.d ]; then
 	done
 fi
 
+# making it pretty :D
+PS1='[\e[0;36m\u\e[0m: \W] \$ '
+
 # alias to ssh into data
 alias data="ssh jpahuku@data.cs.purdue.edu"
 
@@ -36,9 +39,6 @@ export PATH="./:$PATH"
 
 # adding ~/.bin to path
 export PATH="$HOME/.bin/:$PATH"
-
-# alias to ssh into data
-alias data="ssh jpahuku@data.cs.purdue.edu"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
