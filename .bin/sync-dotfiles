@@ -7,4 +7,10 @@ then
 fi
 
 cd $HOME/.dotfiles
-git pull && stow -v --target="$HOME" . && echo "sync complete"
+git pull
+git add .
+git commit -m "update"
+git push
+stow -v --target="$HOME" .
+
+echo "sync complete"
