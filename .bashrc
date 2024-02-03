@@ -1,5 +1,6 @@
 # .bashrc
 
+# ENV STUFF ------------------------------------------
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
@@ -20,28 +21,38 @@ if [ -d ~/.bashrc.d ]; then
 		fi
 	done
 fi
+unset rc
 
 # making it pretty :D
 PS1=' [\e[0;36m\u\e[0m: \e[0;37m\W\e[0m] > '
 
-# alias to ssh into data
+# ALIASES -------------------------------------------
+# for sshing into data
 alias data="ssh jpahuku@data.cs.purdue.edu"
 
+# for opening stuff from the cmd line
+alias open="xdg-open"
 
+# ls shortcuts
+alias ls="ls -h"
+alias la="ls -a"
+alias ll="ls -l"
+
+# HISTORY STUFF -------------------------------------
 # writes every bash command to ~/.bash_eternal_history
 export HISTTIMEFORMAT="%s "
 PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ; }"'echo $$ $USER "$(history 1)" >> ~/.bash_eternal_history'
 
-unset rc
-
+# PATH STUFF ----------------------------------------
 # adding ./ to path
 export PATH="./:$PATH"
 
 # adding ~/.bin to path
 export PATH="$HOME/.bin/:$PATH"
 
-# nvm
+# DEV ENV STUFF  -------------------------------------
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-. "$HOME/.cargo/env"
+
+. "$HOME/.cargo/env" # rust stuff probably
