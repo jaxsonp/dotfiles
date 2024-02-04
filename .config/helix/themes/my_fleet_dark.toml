@@ -26,19 +26,16 @@
 "variable.other.member" = "Violet"
 "label" = "Yellow"
 "keyword" = "Cyan" # .operator / .directive / .function
-"function" = "Lime"
-"function.method" = "Yellow"
+"function" = "Yellow"
+"function.method" = "White"
 "function.macro" = "Lime"
 "function.builtin" = "Lime"
 "function.special" = "Lime"
-#"function.declaration.method" = { fg = "lightest", modifiers = ["bold"] } #depends on #4892
 "tag" = "Blue"
 "special" = "Lime"
 "namespace" = "Blue"
 
 # used in theming
-# "markup" = {} # .normal / .quote / .raw
-# "markup.normal" = {} # .completion / .hover
 "markup.bold" = {  modifiers = ["bold"] }
 "markup.italic" = { modifiers = ["italic"] }
 "markup.strikethrough" = { modifiers = ["crossed_out"] }
