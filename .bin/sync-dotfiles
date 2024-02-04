@@ -9,14 +9,14 @@ fi
 cd $HOME/.dotfiles
 
 # syncing with remote repo
-echo "Syncing repository ---------------------------"
+echo "--- Syncing repository ---------------------------"
 git pull
 git add .
 git commit -m "update"
 git push
 
 # syncing alli
-echo "Performing stow sync -------------------------"
+echo "--- Performing stow sync -------------------------"
 stow --verbose=2 --target="$HOME" .
 
-echo "Complete! ------------------------------------"
+echo "--- Complete! ------------------------------------"
