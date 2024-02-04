@@ -15,8 +15,9 @@ git add .
 git commit -m "update"
 git push
 
-# syncing alli
+# syncing all
 echo "--- Performing stow sync -------------------------"
-stow --verbose=2 --target="$HOME" .
+stow -n --verbose=2 --target="$HOME" .
 
 echo "--- Complete! ------------------------------------"
+exit
