@@ -15,6 +15,6 @@ git commit -m "update"
 git push
 
 # syncing all
-stow -v --target="$HOME" .
+stow --verbose=2 --target="$HOME" .
 
 echo "sync complete"
