@@ -7,10 +7,14 @@ then
 fi
 
 cd $HOME/.dotfiles
+
+# syncing with remote repo
 git pull
 git add .
 git commit -m "update"
 git push
+
+# syncing all
 stow -v --target="$HOME" .
 
 echo "sync complete"

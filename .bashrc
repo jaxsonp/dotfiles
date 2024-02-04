@@ -34,9 +34,9 @@ alias data="ssh jpahuku@data.cs.purdue.edu"
 alias open="xdg-open"
 
 # ls shortcuts
-alias ls="ls -h"
+alias ls="ls -h --color=auto"
 alias la="ls -a"
-alias ll="ls -l"
+alias ll="ls -la"
 
 # HISTORY STUFF -------------------------------------
 # writes every bash command to ~/.bash_eternal_history
