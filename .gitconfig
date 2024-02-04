@@ -1,0 +1,8 @@
+[user]
+	email = "jaxpahu@gmail.com"
+	name = "Jaxson Pahukula"
+	username = jaxsonp
+[init]
+	defaultBranch = main
+[pull]
+	rebase = false
