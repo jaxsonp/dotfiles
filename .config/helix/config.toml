@@ -1,4 +1,4 @@
-#theme=
+theme = "my_fleet_dark"
 
 [editor]
 mouse = true
