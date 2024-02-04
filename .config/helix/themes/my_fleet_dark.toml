@@ -27,7 +27,7 @@
 "label" = "Yellow"
 "keyword" = "Cyan" # .operator / .directive / .function
 "function" = "Lime"
-"function.declaration" = "Yellow"
+"function.method" = "Yellow"
 "function.macro" = "Lime"
 "function.builtin" = "Lime"
 "function.special" = "Lime"
