@@ -8,16 +8,17 @@ fi
 
 cd $HOME/.dotfiles
 
-# syncing with remote repo
-echo "--- Syncing repository ---------------------------"
-git pull
-git add .
-git commit -m "update"
-git push
+echo "-- Pulling changes from remote ------------------------------"
+git pull origin main
 
 # syncing all
-echo "--- Performing stow sync -------------------------"
-stow --verbose=3 --target="$HOME" .
+echo "-- Performing stow sync -------------------------------------"
+stow --verbose=2 --target="$HOME" .
 
-echo "--- Complete! ------------------------------------"
+echo "-- Pushing changes to remote --------------------------------"
+
+git add .
+git commit -m "update $(date)"
+git push origin main
+echo "-- Complete! ------------------------------------------------"
 exit
