@@ -26,7 +26,7 @@
 "variable.other.member" = "Violet"
 "label" = "Yellow"
 "keyword" = "Cyan" # .operator / .directive / .function
-"function" = "Yellow"
+"function" = "Lime"
 "function.method" = "White"
 "function.macro" = "Lime"
 "function.builtin" = "Lime"
