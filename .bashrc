@@ -47,9 +47,6 @@ PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ; }"'echo $$ $USER "$(history 
 # adding ./ to path
 export PATH="./:$PATH"
 
-# adding ~/.bin to path
-export PATH="$HOME/.bin/:$PATH"
-
 # DEV ENV STUFF  -------------------------------------
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
