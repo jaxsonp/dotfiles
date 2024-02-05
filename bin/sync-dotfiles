@@ -18,7 +18,7 @@ stow --verbose=2 --target="$HOME" .
 echo "-- Pushing changes to remote --------------------------------"
 
 git add .
-git commit -m "update $(date)"
+git commit -m "sync $(date)"
 git push origin main
 echo "-- Complete! ------------------------------------------------"
 exit
