@@ -1,8 +1,10 @@
 
+ -- appearance stuff
+vim.wo.number = true
 
-# appearance
-set number
+ -- whitespace
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
 
-# whitespace
-set tabstop=4
-set shiftwidth=4
+ -- behavior
+vim.o.mouse = "nvi"
