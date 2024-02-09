@@ -1,10 +1,9 @@
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
 
- -- appearance stuff
-vim.wo.number = true
+-- appearance stuff
+vim.o.number = true
 
- -- whitespace
+-- whitespace
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
-
- -- behavior
-vim.o.mouse = "nvi"
