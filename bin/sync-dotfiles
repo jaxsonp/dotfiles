@@ -8,17 +8,18 @@ fi
 
 cd $HOME/.dotfiles
 
-echo "-- Pulling changes from remote ------------------------------"
+echo "--- Pulling changes from remote ------------------------------"
+git fetch
 git pull origin main
 
 # syncing all
-echo "-- Performing stow sync -------------------------------------"
+echo "--- Performing stow sync -------------------------------------"
 stow --verbose=2 --target="$HOME" .
 
-echo "-- Pushing changes to remote --------------------------------"
+echo "--- Pushing changes to remote --------------------------------"
 
 git add .
 git commit -m "Sync $(date)"
 git push origin main
-echo "-- Complete! ------------------------------------------------"
+echo "--- Complete -------------------------------------------------"
 exit
