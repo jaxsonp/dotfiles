@@ -15,17 +15,14 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	{
-		"bluz71/vim-nightfly-colors",
-		name = "nightfly",
-		lazy = false,
-		priority = 1000
+		"rebelot/kanagawa.nvim"
 	},
 }, {})
 
 
 -- appearance stuff
-vim.o.termguicolors = true
-vim.cmd [[colorscheme nightfly]]
+vim.cmd [[set termguicolors]]
+vim.cmd [[colorscheme kanagawa]]
 vim.o.number = true
 
 -- whitespace
