@@ -27,7 +27,7 @@ require("lazy").setup({
 				dim_inactive_windows = true,
 				styles = {
 					bold = true,
-					italic = true,
+					italic = false,
 					transparency = false,
 				}
 			})
