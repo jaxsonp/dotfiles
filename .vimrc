@@ -11,7 +11,7 @@ endif
 if (has("termguicolors"))
  set termguicolors
 endif
-colorscheme monokai
+colorscheme rosepine
 
 " Display line numbers
 set number
@@ -35,9 +35,8 @@ set display=truncate
 " Indentation stuff ------------------------------------------
 
 " Indentation settings for using 2 spaces instead of tabs.
-set shiftwidth=2
-set softtabstop=2
-set expandtab
+set shiftwidth = 4
+set softtabstop = 4
 
 " attempt to use auto-indenting based on filetype
 if has('filetype')
