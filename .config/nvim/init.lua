@@ -20,6 +20,7 @@ vim.opt.background = "dark"
 vim.cmd("colorscheme rose-pine")
 vim.cmd [[set termguicolors]]
 vim.o.number = true
+vim.o.cursorline = true
 
 -- whitespace
 vim.o.tabstop = 4
