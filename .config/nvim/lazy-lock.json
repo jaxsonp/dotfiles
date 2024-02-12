@@ -1,8 +1,10 @@
 {
+  "coq.artifacts": { "branch": "artifacts", "commit": "e7202d1a1b5cfa91446d5b7a035f915934e4d713" },
+  "coq.thirdparty": { "branch": "3p", "commit": "d9c1492ee60d627b171c7a9bcd0c3bb35af3e0fd" },
+  "coq_nvim": { "branch": "coq", "commit": "4d63c2b017a0d76f69f9fabd1caab145bae35a87" },
   "indent-blankline.nvim": { "branch": "master", "commit": "12e92044d313c54c438bd786d11684c88f6f78cd" },
   "lazy.nvim": { "branch": "main", "commit": "aedcd79811d491b60d0a6577a9c1701063c2a609" },
   "nvim-tree.lua": { "branch": "master", "commit": "2dbe4ea2b5dd29892f712835ed9f6df8afb22d75" },
-  "nvim-treesitter": { "branch": "master", "commit": "b52b298669f0813bbfbc12d07280c9e2f6f17ebc" },
-  "nvim-web-devicons": { "branch": "master", "commit": "7f30f2da3c3641841ceb0e2c150281f624445e8f" },
-  "rose-pine": { "branch": "main", "commit": "ed4b138acec5af6f3fb39d41505f9a1a79a708ca" }
+  "nvim-treesitter": { "branch": "master", "commit": "10e8dffb7961fae98cf83efa0e170c22ae2cd33a" },
+  "nvim-web-devicons": { "branch": "master", "commit": "7f30f2da3c3641841ceb0e2c150281f624445e8f" }
 }
