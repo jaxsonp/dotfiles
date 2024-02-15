@@ -10,11 +10,14 @@ return {
 			variant = "main",
 			dark_variant = "main",
 			dim_inactive_windows = true,
+			enable = {
+				terminal = false,
+			},
 			styles = {
 				bold = true,
 				italic = false,
 				transparency = false,
-			}
+			},
 		})
 	end,
 }
