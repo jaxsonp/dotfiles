@@ -10,6 +10,7 @@ return({
 			open_mapping = [[<c-\>]],
 			direction = 'vertical',
 			shade_terminals = true,
+			persist_size = false,
 			size = function(term)
 				if term.direction == "horizontal" then
 					return 20

@@ -1,10 +1,9 @@
 
-
-# install script
 install.sh
+.sync-ignore
 
 # git stuff
-\.git
-\.gitignore
+.git
+.gitignore
 README.md
 LICENSE
