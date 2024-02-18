@@ -17,7 +17,7 @@ require("lazy").setup("plugins")
 
 -- appearance stuff
 vim.opt.background = "dark"
-vim.cmd("colorscheme ayu-mirage")
+vim.cmd("colorscheme tender")
 vim.cmd [[set termguicolors]]
 vim.o.number = true
 vim.o.cursorline = true
