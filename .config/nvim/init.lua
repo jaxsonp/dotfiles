@@ -17,7 +17,7 @@ require("lazy").setup("plugins")
 
 -- appearance stuff
 vim.opt.background = "dark"
-vim.cmd("colorscheme tender")
+vim.cmd("colorscheme catppuccin")
 vim.cmd [[set termguicolors]]
 vim.o.number = true
 vim.o.cursorline = true
