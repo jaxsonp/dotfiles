@@ -14,7 +14,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
 
-
 -- appearance stuff
 vim.opt.background = "dark"
 vim.cmd("colorscheme sonokai")
