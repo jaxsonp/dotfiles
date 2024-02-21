@@ -11,7 +11,7 @@ endif
 if (has("termguicolors"))
  set termguicolors
 endif
-colorscheme rosepine
+colorscheme sonokai
 
 " Display line numbers
 set number
