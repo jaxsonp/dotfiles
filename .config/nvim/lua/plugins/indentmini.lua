@@ -3,6 +3,7 @@
 -- indent mini, indentation guides
 return {
 	'nvimdev/indentmini.nvim',
+	enabled = true,
 	event = 'BufEnter',
 	config = function()
 		require('indentmini').setup({
