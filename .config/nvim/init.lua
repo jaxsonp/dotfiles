@@ -10,6 +10,10 @@ vim.o.cursorline = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 
+-- keymaps
+vim.cmd("vnoremap < <gv") -- making < > commands keep selection
+vim.cmd("vnoremap > >gv")
+
 -- behavior
 vim.o.autoindent = true
 vim.o.smartindent = true
