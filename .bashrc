@@ -30,13 +30,13 @@ PS1=' [\e[0;36m\u\e[0m: \e[0;37m\W\e[0m] > '
 # for sshing into data
 alias data="ssh jpahuku@data.cs.purdue.edu"
 
-# for opening stuff from the cmd line
-alias open="xdg-open"
-
 # ls shortcuts
 alias ls="ls -h --color=auto"
 alias la="ls -a"
 alias ll="ls -la"
+
+# python
+alias python=python3
 
 # HISTORY STUFF -------------------------------------
 # writes every bash command to ~/.bash_eternal_history
