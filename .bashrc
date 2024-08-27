@@ -1,5 +1,8 @@
 # .bashrc
 
+# Enabling **
+shopt -s globstar
+
 # ENV STUFF ------------------------------------------
 # Source global definitions
 if [ -f /etc/bashrc ]; then
