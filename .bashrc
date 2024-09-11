@@ -30,13 +30,12 @@ unset rc
 PS1=' [\e[0;36m\u\e[0m: \e[0;37m\W\e[0m] > '
 
 # ALIASES -------------------------------------------
-# for sshing into data
-alias data="ssh jpahuku@data.cs.purdue.edu"
 
 # ls shortcuts
 alias ls="ls -h --color=auto"
 alias la="ls -a"
-alias ll="ls -la"
+alias ll="ls -l"
+alias lla="ls -la"
 
 # python
 alias python=python3
