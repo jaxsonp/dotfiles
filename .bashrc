@@ -43,7 +43,7 @@ alias python=python3
 # HISTORY STUFF -------------------------------------
 # writes every bash command to ~/.bash_eternal_history
 export HISTTIMEFORMAT="%s "
-PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ; }"'echo $$ $USER "$(history 1)" >> ~/.bash_eternal_history'
+PROMPT_COMMAND="${PROMPT_iCOMMAND:+$PROMPT_COMMAND ; }"'echo $$ $USER "$(history 1)" >> ~/.bash_eternal_history'
 
 # PATH STUFF ----------------------------------------
 # adding ./ to path
@@ -54,4 +54,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-. "$HOME/.cargo/env" # rust stuff probably
+. "$HOME/.cargo/env" # rust stuff
