@@ -40,18 +40,18 @@ alias lla="ls -la"
 # python
 alias python=python3
 
+# PATH STUFF ----------------------------------------
+
+PATH="./:$PATH"
+PATH="$PATH:/opt/zig"
+
 # HISTORY STUFF -------------------------------------
 # writes every bash command to ~/.bash_eternal_history
 export HISTTIMEFORMAT="%s "
 PROMPT_COMMAND="${PROMPT_iCOMMAND:+$PROMPT_COMMAND ; }"'echo $$ $USER "$(history 1)" >> ~/.bash_eternal_history'
-
-# PATH STUFF ----------------------------------------
-# adding ./ to path
-export PATH="./:$PATH"
 
 # DEV ENV STUFF  -------------------------------------
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-. "$HOME/.cargo/env" # rust stuff
