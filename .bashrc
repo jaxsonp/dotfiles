@@ -34,16 +34,16 @@ PS1=' [\e[0;36m\u\e[0m: \e[0;37m\W\e[0m] > '
 # ls shortcuts
 alias ls="ls -h --color=auto"
 alias la="ls -a"
-alias ll="ls -l"
-alias lla="ls -la"
+alias ll="ls -al"
 
 # python
 alias python=python3
 
 # PATH STUFF ----------------------------------------
 
+# add ./ to path
 PATH="./:$PATH"
-PATH="$PATH:/opt/zig"
+PATH="$PATH:/usr/local/zig-linux-x86_64-0.13.0/"
 
 # HISTORY STUFF -------------------------------------
 # writes every bash command to ~/.bash_eternal_history
