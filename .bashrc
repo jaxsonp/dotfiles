@@ -27,7 +27,7 @@ fi
 unset rc
 
 # making it pretty :D
-PS1=' [\e[0;36m\u\e[0m@\e[0;35m\h\e[0m: \e[0;37m\W\e[0m] > '
+PS1=' [\e[0;36m\u\e[0m@\e[1;34m\h\e[0m: \e[0;37m\W\e[0m] > '
 
 # ALIASES -------------------------------------------
 
