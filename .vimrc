@@ -13,7 +13,11 @@ if exists('+termguicolors')
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     set termguicolors
 endif
-colorscheme sonokai
+
+
+colorscheme onedark
+
+let g:onedark_terminal_italics=0
 
 " Display line numbers
 set number

@@ -43,7 +43,8 @@ alias python=python3
 
 # add ./ to path
 PATH="./:$PATH"
-PATH="$PATH:/usr/local/zig-linux-x86_64-0.13.0/"
+# XINU stuff for cs354
+export PATH=${PATH}:/p/xinu/bin
 
 # HISTORY STUFF -------------------------------------
 # writes every bash command to ~/.bash_eternal_history
