@@ -13,30 +13,21 @@ if exists('+termguicolors')
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     set termguicolors
 endif
-colorscheme sonokai
 
-" Display line numbers
-set number
-
-" Display the cursor position in the status line of a window
-set ruler
+set number " Display line numbers
+set ruler " Display the cursor position in the status line of a window
 
 " Enable syntax highlighting
 if has('syntax')
   syntax on
 endif
 
-" Highlight searches
-set hlsearch
+colorscheme onedark
 
-" Show @@@ in the last line if it is truncated.
-set display=truncate
+set hlsearch " Highlight searches
 
+set display=truncate " Show @@@ in the last line if it is truncated.
 
-
-" Indentation stuff ------------------------------------------
-
-" Indentation settings for using 2 spaces instead of tabs.
 set shiftwidth=4
 set softtabstop=4
 
@@ -45,15 +36,13 @@ if has('filetype')
   filetype indent plugin on
 endif
 
-
-" Practical stuff ------------------------------------------------
+" editor behavior stuff ----------------------------------------------
 
 " Use case insensitive search, except when using capital letters
 set ignorecase
 set smartcase
 
-" Allow backspacing over everything in insert mode.
-set backspace=indent,eol,start
+set backspace=indent,eol,start " Allow backspacing over everything in insert mode.
 
 set autoindent
 set nostartofline
@@ -61,11 +50,9 @@ set nostartofline
 " Always display the status line, even if only one window is displayed
 set laststatus=2
 
-" Ask before saving w/o quitting
-set confirm
+set confirm " Ask before saving w/o quitting
 
-" Use visual bell instead of beeping when doing something wrong
-set visualbell
+set visualbell " Use visual bell instead of beeping when doing something wrong
 
 " And reset the terminal code for the visual bell. If visualbell is set, and
 " this line is also included, vim will neither flash nor beep. If visualbell
@@ -109,5 +96,4 @@ set pastetoggle=<F11>
 
 " Mappings --------------------------------------------------
 
-" Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy, which is the default
-map Y y$
+" map Y y$ " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy, which is the default

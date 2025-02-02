@@ -9,11 +9,25 @@ then
   exit
 fi
 
+SYNC_REMOTE=true
+while [ $# -gt 0 ]; do
+    case "$1" in
+	-l|--local)
+	    SYNC_REMOTE=false
+	    ;;
+	*)
+	    ;;
+    esac
+    shift
+done
+
 cd $HOME/.dotfiles
 
-echo "--- Pulling changes from remote ------------------------------"
-git fetch
-git pull origin main
+if $SYNC_REMOTE ; then
+    echo "--- Pulling changes from remote ------------------------------"
+    git fetch
+    git pull origin main
+fi
 
 # syncing all
 echo "--- Performing sync ------------------------------------------"
@@ -90,10 +104,12 @@ echo "Linking files:"
 traverse_files .
 cd "$HOME/.dotfiles"
 
-echo "--- Pushing changes to remote --------------------------------"
+if $SYNC_REMOTE ; then
+    echo "--- Pushing changes to remote --------------------------------"
+    git add .
+    git commit -m "Sync $(date)"
+    git push origin main
+fi
 
-git add .
-git commit -m "Sync $(date)"
-git push origin main
 echo "--- Complete -------------------------------------------------"
 exit
