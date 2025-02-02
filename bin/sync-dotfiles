@@ -9,11 +9,25 @@ then
   exit
 fi
 
+SYNC_REMOTE=true
+while [ $# -gt 0 ]; do
+	case "$1" in
+	-l|--local)
+		SYNC_REMOTE=false
+		;;
+	*)
+		;;
+	esac
+	shift
+done
+
 cd $HOME/.dotfiles
 
-echo "--- Pulling changes from remote ------------------------------"
-git fetch
-git pull origin main
+if $SYNC_REMOTE ; then
+	echo "--- Pulling changes from remote ------------------------------"
+	git fetch
+	git pull origin main
+fi
 
 # syncing all
 echo "--- Performing sync ------------------------------------------"
@@ -55,33 +69,35 @@ traverse_directories . 0
 cd "$HOME/.dotfiles"
 function traverse_files() {
 	cd $1
-	for file in * .[^.]*; do		
+	for file in * .[^.]*; do
 		# checking for file in .sync-ignore
 		grep "^$file$" $SYNC_FILE &> /dev/null
-		if [[ $? -eq 1 ]]; then	
-			home_path="$HOME/$(echo "$(pwd)/$file" | sed 's/.*\/\.dotfiles\///')"
-
-			if [[ ! -d "$home_path" ]]; then
-				echo -n " - $home_path: "
-				if [[ -h "$home_path" ]]; then
-					echo "Symlink exists"
-				elif [[ -e "$home_path" ]]; then
-					echo -e "${RED}ERROR! Conflicting file exists$RESET_COLOR"
-				else
-					ln -s "$(pwd)/$file" "$home_path" &> out
-					if [[ $? -eq 0 ]]; then
-						echo -e "${GREEN}Created symlink$RESET_COLOR"
-					else
-						echo -e "${RED}ERROR! Failed to create symlink:$RESET_COLOR"
-						cat out
-					fi
-					rm out
-				fi
-			else	
-				traverse_files $file
-			fi
-
+		if [[ $? -ne 1 ]]; then
+			continue
 		fi
+
+		home_path="$HOME/$(echo "$(pwd)/$file" | sed 's/.*\/\.dotfiles\///')"
+
+		if [[ ! -d "$home_path" ]]; then
+			echo -n " - $home_path: "
+			if [[ -h "$home_path" ]]; then
+				echo "Symlink exists"
+			elif [[ -e "$home_path" ]]; then
+				echo -e "${RED}ERROR! Conflicting file exists$RESET_COLOR"
+			else
+				ln -s "$(pwd)/$file" "$home_path" &> out
+				if [[ $? -eq 0 ]]; then
+					echo -e "${GREEN}Created symlink$RESET_COLOR"
+				else
+					echo -e "${RED}ERROR! Failed to create symlink:$RESET_COLOR"
+					cat out
+				fi
+				rm out
+			fi
+		else	
+			traverse_files $file
+		fi
+
 	done
 	cd ..
 }
@@ -90,10 +106,12 @@ echo "Linking files:"
 traverse_files .
 cd "$HOME/.dotfiles"
 
-echo "--- Pushing changes to remote --------------------------------"
+if $SYNC_REMOTE ; then
+	echo "--- Pushing changes to remote --------------------------------"
+	git add .
+	git commit -m "Sync $(date)"
+	git push origin main
+fi
 
-git add .
-git commit -m "Sync $(date)"
-git push origin main
 echo "--- Complete -------------------------------------------------"
 exit
