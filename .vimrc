@@ -2,18 +2,6 @@
 
 set nocompatible
 
-" Plugins ---------------------------------------------------------------
-
-call plug#begin()
-
-" syntax highlighting
-Plug 'sheerun/vim-polyglot'
-
-" highlight yanked text
-Plug 'machakann/vim-highlightedyank'
-
-call plug#end()
-
 " Visual stuff ----------------------------------------------------------
 
 set relativenumber
@@ -48,6 +36,23 @@ set listchars=tab:\|\ ,trail:·,extends:>,precedes:<
 if has('filetype')
 	filetype indent plugin on
 endif
+
+" Plugins ---------------------------------------------------------------
+
+call plug#begin()
+
+" Fancy status line
+Plug 'vim-airline/vim-airline'
+let g:airline_theme='onedark' " setting status line colortheme
+
+" syntax highlighting
+Plug 'sheerun/vim-polyglot'
+
+" highlight yanked text
+Plug 'machakann/vim-highlightedyank'
+
+call plug#end()
+
 
 " editor behavior stuff ----------------------------------------------
 
