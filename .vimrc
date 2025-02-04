@@ -18,7 +18,9 @@ if exists('+termguicolors')
 	set termguicolors
 endif
 
-colorscheme onedark
+let g:sonokai_disable_italic_comment=1
+let g:sonokai_better_performance=1
+colorscheme sonokai
 
 set hlsearch " Highlight searches
 
@@ -43,7 +45,7 @@ call plug#begin()
 
 " Fancy status line
 Plug 'vim-airline/vim-airline'
-let g:airline_theme='onedark' " setting status line colortheme
+let g:airline_theme='sonokai' " setting status line colortheme
 
 " syntax highlighting
 Plug 'sheerun/vim-polyglot'
