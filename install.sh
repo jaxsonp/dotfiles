@@ -2,7 +2,7 @@
 
 cd $HOME
 # cloning repository
-git clone https://github.com/jaxsonp/dotfiles.git
+git clone git@github.com:jaxsonp/dotfiles.git
 mv dotfiles/ .dotfiles/
 
 # perms
