@@ -1,9 +1,0 @@
-
-install.sh
-.sync-ignore
-
-# git stuff
-.git
-.gitignore
-README.md
-LICENSE

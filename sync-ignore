@@ -1,0 +1,18 @@
+# which files to ignore when syncing
+# 
+# lines starting w '#' are comments
+# NOT GIT IGNORE GLOB STYLE SYNTAX! uses pattern matching syntax cus im not smart enough
+
+# repo stuff
+install.sh
+sync-ignore
+README.md
+LICENSE
+
+# sonokai puts build output and stuff here
+.vim/after/syntax/*
+
+# git stuff
+.git
+.gitignore
+

@@ -21,7 +21,8 @@ while [ $# -gt 0 ]; do
 	shift
 done
 
-cd $HOME/.dotfiles
+DOTFILES_DIR="$HOME/.dotfiles/"
+cd $DOTFILES_DIR
 
 if $SYNC_REMOTE ; then
 	echo "--- Pulling changes from remote ------------------------------"
@@ -32,47 +33,70 @@ fi
 # syncing all
 echo "--- Performing sync ------------------------------------------"
 
-SYNC_FILE="$(pwd)/.sync-ignore"
-echo "Sync file located at $SYNC_FILE"
+IGNORE_FILE="$DOTFILES_DIR/sync-ignore"
+echo "Sync ignore file at $IGNORE_FILE"
+
+IGNORE_PATTERNS=()
+while IFS= read -r line; do
+	if echo $line | grep -q -E '^\s*$|^#'; then
+		continue # ignoring comments and whitespace lines
+	fi
+	IGNORE_PATTERNS+=( $line )
+done < $IGNORE_FILE
+echo "Ignore patterns: ${IGNORE_PATTERNS[*]}"
+
+function is_ignored() {
+	file=$1
+	path="$(pwd)/$file"
+	local_path="${path#"$DOTFILES_DIR"}"
+	for pattern in ${IGNORE_PATTERNS[@]}; do
+		# !! pattern matching, not glob matching
+		if [[ $local_path == $pattern ]]; then
+			return 0 # ignore
+		fi
+	done
+	return 1
+}
 
 function traverse_directories() {
 	cd $1
 	for file in * .[^.]* ; do
-		# checking for file in .sync-ignore
-		grep "^$file$" $SYNC_FILE &> /dev/null
-
-		if [[ $? -eq 1 ]] && [[ -d "$file" ]]; then
-			for i in $(seq $2); do
-				echo -n "|   "
-			done
-			echo -n "|-- $file/"
-			
-			# mirroring directory
-			rel_path=$(echo "$(pwd)/$file" | sed 's/.*\/\.dotfiles\///')
-			mkdir "$HOME/$rel_path" 2> /dev/null
-			if [[ $? -eq 0 ]]; then
-				echo -e "$GREEN (new)$RESET_COLOR"
-			else
-				echo ""
-			fi
-			
-			# recursive call
-			traverse_directories $file $(($2 + 1))
+		# ignore if not a dir or if ignored
+		if ! [[ -d "$file" ]] || is_ignored $file; then
+			continue
 		fi
+
+		for i in $(seq $2); do
+			echo -n "|   "
+		done
+		echo -n "|-- $file/"
+		
+		# mirroring directory
+		rel_path=$(echo "$(pwd)/$file" | sed 's/.*\/\.dotfiles\///')
+		mkdir "$HOME/$rel_path" 2> /dev/null
+		if [[ $? -eq 0 ]]; then
+			echo -e "$GREEN (new)$RESET_COLOR"
+		else
+			echo ""
+		fi
+		
+		# recursive call
+		traverse_directories $file $(($2 + 1))
 	done
 	cd ..
 }
 echo "Mirroring folder structure:"
+
+shopt -s extglob nullglob
 echo "~/"
 traverse_directories . 0
+cd "$DOTFILES_DIR"
 
-cd "$HOME/.dotfiles"
 function traverse_files() {
 	cd $1
 	for file in * .[^.]*; do
-		# checking for file in .sync-ignore
-		grep "^$file$" $SYNC_FILE &> /dev/null
-		if [[ $? -ne 1 ]]; then
+		# ignore if file is ignored
+		if is_ignored $file; then
 			continue
 		fi
 
@@ -104,7 +128,7 @@ function traverse_files() {
 
 echo "Linking files:"
 traverse_files .
-cd "$HOME/.dotfiles"
+cd "$DOTFILES_DIR"
 
 if $SYNC_REMOTE ; then
 	echo "--- Pushing changes to remote --------------------------------"
