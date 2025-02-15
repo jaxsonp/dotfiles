@@ -50,6 +50,10 @@ let g:airline_theme='sonokai' " setting status line colortheme
 " syntax highlighting
 Plug 'sheerun/vim-polyglot'
 
+" fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 " highlight yanked text
 Plug 'machakann/vim-highlightedyank'
 
