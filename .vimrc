@@ -53,9 +53,19 @@ Plug 'sheerun/vim-polyglot'
 " fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+command! F Files " shortcut to open files
 
 " highlight yanked text
 Plug 'machakann/vim-highlightedyank'
+
+" linting
+Plug 'dense-analysis/ale'
+let g:ale_lint = {
+	\	'c': ['clang', 'gcc'],
+	\	'python': ['flake8'],
+	\}
+let g:ale_lint_on_text_changed = 'always'
+let g:ale_lint_on_insert_leave = 1
 
 call plug#end()
 
