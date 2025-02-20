@@ -64,7 +64,6 @@ let g:ale_lint = {
 	\	'c': ['clang', 'gcc'],
 	\	'python': ['flake8'],
 	\}
-let g:ale_lint_on_text_changed = 'always'
 let g:ale_lint_on_insert_leave = 1
 
 call plug#end()
@@ -127,4 +126,5 @@ set pastetoggle=<F3>
 
 " Mappings --------------------------------------------------
 
-" map Y y$ " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy, which is the default
+noremap ,f :Files<CR>
+noremap ,b :Buffers<CR>
