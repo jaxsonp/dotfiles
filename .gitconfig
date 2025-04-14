@@ -9,3 +9,5 @@
 [core]
 	editor = vim
 	autocrlf = input
+[alias]
+	log-olp = log --pretty=oneline
