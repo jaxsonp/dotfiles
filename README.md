@@ -2,9 +2,12 @@
 
 My lovely little dotfiles repository
 
-## To install
+## Dependencies
 
-Run the following command:
+* [tpm](https://github.com/tmux-plugins/tpm)* (`git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm # tmux package manager`)
+* [ripgrep](https://github.com/BurntSushi/ripgrep)
+
+## Installation
 
 ```sh
 curl https://raw.githubusercontent.com/jaxsonp/dotfiles/main/install.sh | sh
