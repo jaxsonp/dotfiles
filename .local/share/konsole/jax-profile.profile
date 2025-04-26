@@ -1,5 +1,5 @@
 [Appearance]
-ColorScheme=jaxsons-colors
+ColorScheme=jax-colors
 Font=Hack Nerd Font,10.5,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 LineSpacing=1
 
