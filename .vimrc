@@ -53,7 +53,6 @@ Plug 'sheerun/vim-polyglot'
 " fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-command! F Files " shortcut to open files
 
 " highlight yanked text
 Plug 'machakann/vim-highlightedyank'
@@ -128,3 +127,14 @@ set pastetoggle=<F3>
 
 noremap ,f :Files<CR>
 noremap ,b :Buffers<CR>
+
+" disable arrow keys cus I suck
+noremap <Left> <nop>
+inoremap <Left> <nop>
+noremap <Right> <nop>
+inoremap <Right> <nop>
+noremap <Up> <nop>
+inoremap <Up> <nop>
+noremap <Down> <nop>
+inoremap <Down> <nop>
+
