@@ -46,12 +46,8 @@ PATH="./:$PATH"
 # XINU stuff for cs354
 export PATH=${PATH}:/p/xinu/bin
 
-# HISTORY STUFF -------------------------------------
-# writes every bash command to ~/.bash_eternal_history
-export HISTTIMEFORMAT="%s "
-PROMPT_COMMAND="${PROMPT_iCOMMAND:+$PROMPT_COMMAND ; }"'echo $$ $USER "$(history 1)" >> ~/.bash_eternal_history'
-
 # DEV ENV STUFF  -------------------------------------
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

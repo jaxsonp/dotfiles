@@ -9,5 +9,6 @@
 [core]
 	editor = vim
 	autocrlf = input
+	excludesFile = /home/jaxson/.config/global.gitignore
 [alias]
 	log-olp = log --pretty=oneline
