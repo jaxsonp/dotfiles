@@ -9,6 +9,7 @@ My lovely little dotfiles repository
 * [fzf](https://github.com/junegunn/fzf) (package manager `fzf`?)
 * virtualenv/python3-venv
 * For rust dev: cargo, rust-analyzer, rustfmt (rustup)
+* For js/html/...: Prettier
 
 ## Installation
 

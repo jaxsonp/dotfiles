@@ -1,6 +1,7 @@
 return {
 	{
 		"EdenEast/nightfox.nvim",
+		lazy = false,
 		priority = 1000, -- load first
 		config = function()
 			vim.cmd([[colorscheme carbonfox]])
@@ -26,7 +27,12 @@ return {
 					},
 					lualine_x = { {
 						function()
-							return require('auto-session.lib').current_session_name(true)
+							local session = require('auto-session.lib').current_session_name(true)
+							if session == '' then
+								return 'no session'
+							else
+								return session
+							end
 						end,
 						padding = { right=2 }
 					} },
@@ -88,6 +94,7 @@ return {
 						}
 					},
 					sort_lastused = true,
+					ignore_current_buffers = true,
 				},
 				diagnostics = {
 					layout_strategy = "vertical",
@@ -99,7 +106,7 @@ return {
 			{ '<Leader>d', function() require("telescope.builtin").diagnostics({ bufnr=0 }) end, desc = "[D]iagnostics",  noremap = true },
 			{ '<Leader>ff', function() require("telescope.builtin").find_files() end, desc = "[F]ind [F]iles",noremap = true },
 			{ '<Leader>fa', function() require("telescope.builtin").find_files({ no_ignore=true }) end, desc = "[F]ind [A]ll files (don't respect gitignore)",noremap = true },
-			{ '<Leader>fg', function() require("telescope.builtin").git_files() end, desc = "[F]ind [G]it files",noremap = true },
+			{ '<Leader>fg', function() require("telescope.builtin").live_grep() end, desc = "[F]ind [G]rep",noremap = true },
 		}
 	},
 	{
@@ -119,6 +126,12 @@ return {
 		'nvim-tree/nvim-tree.lua',
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
 		opts = {
+			sync_root_with_cwd = true,
+			respect_buf_cwd = true,
+			update_focused_file = {
+				enable = true,
+				update_root = true,
+			},
 			view = {
 				side = "right",
 				width = 40,
@@ -129,8 +142,8 @@ return {
 				}
 			}
 		},
-		key = {
-			{ '<Leader>tt', function() require("nvim-tree.api").tree.toggle({ path=vim.fn.getcwd() }) end, desc = "[T]ree [T]oggle", noremap = true },
+		keys = {
+			{ '<Leader>tt', function() require("nvim-tree.api").tree.toggle({ focus = false }) end, desc = "[T]ree [T]oggle", noremap = true },
 			{ '<Leader>tf', function() require("nvim-tree.api").tree.find_file() end, desc = "[T]ree current [F]ile", noremap = true },
 			{ '<Leader>tr', function() require("nvim-tree.api").tree.reload() end, desc = "[T]ree [R]eload", noremap = true },
 		},
@@ -175,6 +188,8 @@ return {
 				ensure_installed = {
 					"lua_ls",
 					"pyright",
+					"svelte",
+					"tailwindcss",
 				},
 			})
 
@@ -189,6 +204,13 @@ return {
 					}
 				}
 			})
+			lspconfig.html.setup({})
+			lspconfig.tailwindcss.setup({
+				filetypes = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact", "svelte" },
+			})
+			lspconfig.svelte.setup({
+				filetypes = { "svelte" },
+			})
 
 			if vim.lsp.inlay_hint then
 				vim.lsp.inlay_hint.enable(true, { 0 })
@@ -200,11 +222,13 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate", -- update parsers on plugin update
 		event = { "BufReadPost", "BufNewFile" },
-		opts = {
-			ensure_installed = { "lua", "rust", "toml", "python" },
-			highlight = { enable = true },
-			indent = { enable = true },
-		},
+		config = function()
+			require("nvim-treesitter.configs").setup {
+				ensure_installed = { "lua", "rust", "svelte", "toml", "python", "html", },
+				highlight = { enable = true },
+				indent = { enable = true },
+			}
+		end,
 	},
 	{ 'rust-lang/rust.vim' },
 	{
@@ -214,5 +238,43 @@ return {
 		init = function()
 			vim.g.rustfmt_autosave = true
 		end
+	},
+	{
+		"luckasRanarison/tailwind-tools.nvim",
+		name = "tailwind-tools",
+		build = ":UpdateRemotePlugins",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-telescope/telescope.nvim", -- optional
+			"neovim/nvim-lspconfig", -- optional
+		},
+		opts = {}
+	},
+	{
+		"nvimtools/none-ls.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			local null_ls = require("null-ls")
+			null_ls.setup({
+				sources = {
+					null_ls.builtins.formatting.prettier,
+				},
+				on_attach = function(client, bufnr)
+					if client.supports_method("textDocument/formatting") then
+						local augroup = vim.api.nvim_create_augroup("FormatOnSave", { clear = true })
+
+						vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+						vim.api.nvim_create_autocmd("BufWritePre", {
+							group = augroup,
+							buffer = bufnr,
+							callback = function()
+								vim.lsp.buf.format({ bufnr = bufnr })
+							end,
+						})
+					end
+				end
+			})
+		end,
 	}
+
 }
