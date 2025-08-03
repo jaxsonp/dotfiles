@@ -24,7 +24,6 @@ vim.o.showbreak = "~ "
 
 
 
-
 -- Behavior
 
 -- confirm quit w/o save

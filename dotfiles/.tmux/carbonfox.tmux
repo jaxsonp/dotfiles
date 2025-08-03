@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 # Nightfox colors for Tmux
 # Style: carbonfox
 # Upstream: https://github.com/edeneast/nightfox.nvim/raw/main/extra/carbonfox/carbonfox.tmux

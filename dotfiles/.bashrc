@@ -1,7 +1,9 @@
 # .bashrc
 
+
 # Enabling **
 shopt -s globstar
+
 
 # ENV STUFF ------------------------------------------
 # Source global definitions
@@ -9,7 +11,7 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-# User specific environment
+# 
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
 then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
@@ -29,6 +31,8 @@ unset rc
 # making it pretty :D
 PS1=' [\[\e[0;36m\]\u\[\e[0m\]@\h: \[\e[0;37m\]\W\[\e[0m\]] > '
 
+
+
 # ALIASES -------------------------------------------
 
 # ls shortcuts
@@ -39,12 +43,7 @@ alias ll="ls -al"
 # python
 alias python=python3
 
-# PATH STUFF ----------------------------------------
 
-# add ./ to path
-PATH="./:$PATH"
-# XINU stuff for cs354
-export PATH=${PATH}:/p/xinu/bin
 
 # DEV ENV STUFF  -------------------------------------
 

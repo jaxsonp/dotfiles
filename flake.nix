@@ -2,7 +2,6 @@
   description = "Home Manager configuration of jaxson";
 
   inputs = {
-    # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -25,8 +24,6 @@
       homeConfigurations.jaxson = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
         modules = [
           inputs.plasma-manager.homeManagerModules.plasma-manager
           ./home.nix

@@ -17,7 +17,7 @@ return {
 					section_separators = { left = '', right = '' },
 				},
 				sections = {
-					lualine_a = { { 'mode', separator = { left = '  ' }, padding = 1 } },
+					lualine_a = { { 'mode', padding = 1 } },
 					lualine_b = {
 						'filename',
 					},
@@ -50,7 +50,6 @@ return {
 					lualine_z = { {
 						'filetype',
 						colored = false,
-						separator = { right = '  ' },
 						padding = 1,
 					} },
 				}
@@ -58,8 +57,9 @@ return {
 		end
 	},
 	{
-		'nvim-telescope/telescope.nvim', tag = '0.1.8',
-		dependencies = { 'nvim-lua/plenary.nvim' },
+		'nvim-telescope/telescope.nvim',
+		tag = '0.1.8',
+		dependencies = { { 'nvim-lua/plenary.nvim' } },
 		opts = {
 			defaults = {},
 			pickers = {
@@ -88,11 +88,6 @@ return {
 					end,
 				},
 				buffers = {
-					mappings = {
-						n = {
-							["<Del>"] = require('telescope.actions').delete_buffer,
-						}
-					},
 					sort_lastused = true,
 					ignore_current_buffers = true,
 				},
@@ -106,8 +101,8 @@ return {
 			{ '<Leader>d', function() require("telescope.builtin").diagnostics({ bufnr=0 }) end, desc = "[D]iagnostics",  noremap = true },
 			{ '<Leader>ff', function() require("telescope.builtin").find_files() end, desc = "[F]ind [F]iles",noremap = true },
 			{ '<Leader>fa', function() require("telescope.builtin").find_files({ no_ignore=true }) end, desc = "[F]ind [A]ll files (don't respect gitignore)",noremap = true },
-			{ '<Leader>fg', function() require("telescope.builtin").live_grep() end, desc = "[F]ind [G]rep",noremap = true },
-		}
+			{ '<Leader>gf', function() require("telescope.builtin").live_grep() end, desc = "[G]rep [F]ile",noremap = true },
+		},
 	},
 	{
 		'rmagatti/auto-session',
@@ -188,8 +183,6 @@ return {
 				ensure_installed = {
 					"lua_ls",
 					"pyright",
-					"svelte",
-					"tailwindcss",
 				},
 			})
 
@@ -204,13 +197,6 @@ return {
 					}
 				}
 			})
-			lspconfig.html.setup({})
-			lspconfig.tailwindcss.setup({
-				filetypes = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact", "svelte" },
-			})
-			lspconfig.svelte.setup({
-				filetypes = { "svelte" },
-			})
 
 			if vim.lsp.inlay_hint then
 				vim.lsp.inlay_hint.enable(true, { 0 })
@@ -224,7 +210,7 @@ return {
 		event = { "BufReadPost", "BufNewFile" },
 		config = function()
 			require("nvim-treesitter.configs").setup {
-				ensure_installed = { "lua", "rust", "svelte", "toml", "python", "html", },
+				ensure_installed = { "lua", "rust", "toml", "python", },
 				highlight = { enable = true },
 				indent = { enable = true },
 			}
@@ -238,17 +224,6 @@ return {
 		init = function()
 			vim.g.rustfmt_autosave = true
 		end
-	},
-	{
-		"luckasRanarison/tailwind-tools.nvim",
-		name = "tailwind-tools",
-		build = ":UpdateRemotePlugins",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"nvim-telescope/telescope.nvim", -- optional
-			"neovim/nvim-lspconfig", -- optional
-		},
-		opts = {}
 	},
 	{
 		"nvimtools/none-ls.nvim",
@@ -276,5 +251,4 @@ return {
 			})
 		end,
 	}
-
 }

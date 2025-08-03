@@ -1,0 +1,4 @@
+# KDE input settings
+{...}: {
+
+}

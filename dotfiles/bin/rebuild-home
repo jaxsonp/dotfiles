@@ -1,0 +1,10 @@
+
+DOTFILES_DIR="$HOME/dotfiles"
+
+if [ -d "$DOTFILES_DIR" ]; then
+	echo "rebuilding home manager config"
+	home-manager switch --flake $DOTFILES_DIR#jaxson
+	echo "rebuild finished with exit code $?"
+else
+	echo "Couldn't find config at $DOTFILES_DIR"
+fi
