@@ -1,28 +1,24 @@
 # dotfiles
 
-My lovely little dotfiles repository
-
-## Dependencies
-
-* [tpm](https://github.com/tmux-plugins/tpm) (`git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm # tmux package manager`)
-* [ripgrep](https://github.com/BurntSushi/ripgrep) (package manager `ripgrep`?)
-* [fzf](https://github.com/junegunn/fzf) (package manager `fzf`?)
-* virtualenv/python3-venv
-* For rust dev: cargo, rust-analyzer, rustfmt (rustup)
-* For js/html/...: Prettier
+My dotfiles repo, managed by [Home Manager](https://github.com/nix-community/home-manager).
 
 ## Installation
 
-```sh
-curl https://raw.githubusercontent.com/jaxsonp/dotfiles/main/install.sh | sh
-```
+Clone this repo into your home directory.
 
-This command clones this repository into the home directory and adds a cron job
+### Home config
 
-## To manually sync
-
-Dotfiles should autosync after install, but to trigger a manual sync run the following command:
+Have Nix installed, then [install Home Manager](https://nix-community.github.io/home-manager/index.xhtml#sec-install-standalone). Then build the home configuration using:
 
 ```sh
-sync-dotfiles
+~/dotfiles/home/dotfiles/bin/rebuild-home
 ```
+
+### System config
+
+To setup the system config, create the following symlink:
+
+```sh
+ln -s $HOME/dotfiles/system/configuration.nix /etc/nixos/configuration.nix
+```
+
