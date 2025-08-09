@@ -18,6 +18,7 @@
 		vscode
 		spotify
 		discord
+		prismlauncher # mc
 
 		# dev
 		gcc

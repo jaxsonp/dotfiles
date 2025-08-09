@@ -71,9 +71,6 @@
 								"org.kde.plasma.keyboardlayout"
 								"org.kde.plasma.keyboardindicator"
 							];
-							configs = {
-								battery.showPercentage = true;
-							};
 						};
 						icons.scaleToFit = true;
 					};
