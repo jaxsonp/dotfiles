@@ -1,3 +1,5 @@
+MenuBar=Disabled
+
 [Desktop Entry]
 DefaultProfile=jax-profile.profile
 
@@ -5,4 +7,4 @@ DefaultProfile=jax-profile.profile
 ConfigVersion=1
 
 [MainWindow]
-MenuBar=Enabled
+MenuBar=Disabled

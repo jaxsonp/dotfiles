@@ -1,0 +1,13 @@
+#!/bin/sh
+
+DOTFILES_DIR="$HOME/dotfiles"
+
+if [ ! -d "$DOTFILES_DIR" ]; then
+	echo "failed to locate dotfiles directory"
+	exit 1
+fi
+
+$HOME/dotfiles/.local/bin/stow --dir="$DOTFILES_DIR" --target="$HOME" --no-folding --verbose --stow .
+
+echo "sync complete ($?)"
+
