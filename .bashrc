@@ -43,6 +43,10 @@ alias ll="ls -al"
 # python
 alias python=python3
 
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
 
 
 # DEV ENV STUFF  -------------------------------------

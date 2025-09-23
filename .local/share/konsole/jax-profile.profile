@@ -6,7 +6,7 @@ LineSpacing=1
 [General]
 Name=jax-profile
 Parent=FALLBACK/
-TerminalMargin=1
+TerminalMargin=0
 
 [Scrolling]
 ScrollBarPosition=2
