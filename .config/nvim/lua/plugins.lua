@@ -99,9 +99,10 @@ return {
 		keys = {
 			{ '<Leader>b', function() require("telescope.builtin").buffers() end, desc = "[B]uffers", noremap = true },
 			{ '<Leader>d', function() require("telescope.builtin").diagnostics({ bufnr=0 }) end, desc = "[D]iagnostics",  noremap = true },
-			{ '<Leader>ff', function() require("telescope.builtin").find_files() end, desc = "[F]ind [F]iles",noremap = true },
-			{ '<Leader>fa', function() require("telescope.builtin").find_files({ no_ignore=true }) end, desc = "[F]ind [A]ll files (don't respect gitignore)",noremap = true },
-			{ '<Leader>gf', function() require("telescope.builtin").live_grep() end, desc = "[G]rep [F]ile",noremap = true },
+			{ '<Leader>ff', function() require("telescope.builtin").find_files() end, desc = "[F]ind [F]iles", noremap = true },
+			{ '<Leader>fg', function() require("telescope.builtin").find_files({ no_ignore=true }) end, desc = "[F]ind [G]it files (respect gitignore)", noremap = true },
+			{ '<Leader>fa', function() require("telescope.builtin").find_files({ no_ignore=true, hidden=true }) end, desc = "[F]ind [A]ll files", noremap = true },
+			{ '<Leader>gf', function() require("telescope.builtin").live_grep() end, desc = "[G]rep [F]ile", noremap = true },
 		},
 	},
 	{
