@@ -12,11 +12,7 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # 
-if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
-then
-    PATH="$HOME/.local/bin:$PATH"
-fi
-export PATH
+export PATH="$PATH:$HOME/bin:$HOME/.local/bin"
 
 # User specific aliases and functions
 if [ -d ~/.bashrc.d ]; then
