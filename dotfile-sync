@@ -1,0 +1,155 @@
+#!/bin/sh
+
+print_usage() {
+	printf '
+Usage: $FILENAME command [package1 package2 ...]
+
+A simple script to perform bulk stow actions. List packages to include them. Prepend a package name with a minus to
+exclude it. If there are no explicitly included packages, all available packages will be included.
+
+Commands:
+    l, list     List the available packages
+    i, install  Install packages
+    r, refresh  Refresh packages (unstow then restow)
+    d, delete   Delete packages
+    h, help     Print this message
+
+Expects packages to be at ~/dotfiles/*/, and expects GNU stow to be installed
+' >&2
+}
+
+FILENAME=$(basename $0)
+DOTFILES_DIR="$HOME/dotfiles"
+
+MINOR_TEXT="\033[37m\033[2m"
+RESET_TEXT="\033[0m"
+
+STOW_ARGS="--dir=$DOTFILES_DIR --verbose --no-folding"
+
+# preflight checks
+
+if [ $# -eq 0 ]; then
+	print_usage
+	exit 0
+elif [ ! -d "$DOTFILES_DIR" ]; then
+	printf "Failed to locate dotfiles directory" >&2
+	exit 1
+elif ! command -v stow 1> /dev/null; then
+	printf "Failed to locate stow command" >&2
+	exit 1
+fi
+
+# parsing command
+
+COMMAND="$1"
+shift
+# converting command to lowercase
+COMMAND=$(echo "$COMMAND" | tr '[:upper:]' '[:lower:]')
+
+parse_packages() {
+	INCLUDED_PACKAGES=""
+	EXCLUDED_PACKAGES=""
+	for arg in $@; do
+		arg=${arg%/}
+		if [ $arg == ${arg#-} ]; then
+			# included if doesn't start with dash
+			INCLUDED_PACKAGES="$INCLUDED_PACKAGES $arg"
+		else
+			# excluded
+			arg=${arg#-}
+			EXCLUDED_PACKAGES="$EXCLUDED_PACKAGES $arg"
+		fi
+	done
+	if [ -z "$INCLUDED_PACKAGES" ]; then
+		# use all packages if none provided
+		ALL=$(cd $DOTFILES_DIR && ls -d */)
+		for pkg in $ALL; do
+			INCLUDED_PACKAGES="$INCLUDED_PACKAGES ${pkg%/}"
+		done
+	fi
+	VALID_PACKAGES=""
+	for pkg in $INCLUDED_PACKAGES; do
+		# checking if package exists
+		if [ ! -d "$DOTFILES_DIR/$pkg" ]; then
+			printf "Package '$pkg' doesn't exist in $DOTFILES_DIR\n" >&2
+			exit 1
+		fi
+
+		# checking if package was excluded
+		excluded=0
+		for x_pkg in $EXCLUDED_PACKAGES; do
+			if [ $pkg == $x_pkg ]; then
+				excluded=1 && break;
+			fi
+		done
+		if [ $excluded -eq 0 ]; then
+			VALID_PACKAGES="$VALID_PACKAGES $pkg"
+		fi
+	done
+	echo $VALID_PACKAGES
+	return 0
+}
+
+# executing command
+
+execute_stow() {
+	STOW_CMD=$1
+	ACTION_TEXT=$2
+
+	shift 2
+	PACKAGES=$(parse_packages $@)
+
+	if [ -z "$PACKAGES" ]; then
+		printf "No packages provided\n"
+		return 0
+	fi
+
+	printf "Simulating changes\n"
+	TMP_FILE="/tmp/$FILENAME.out"
+	for pkg in $PACKAGES; do
+		stow $STOW_ARGS --no $STOW_CMD $pkg > $TMP_FILE 2>&1
+		if [ $? -ne 0 ]; then
+			printf "ERROR: package '$pkg' stow simulation failed:\n\n$(cat $TMP_FILE)\n\n" >&2
+			return 1
+		fi
+	done
+	rm $TMP_FILE
+
+	printf "$ACTION_TEXT packages: $PACKAGES\n"
+	for pkg in $PACKAGES; do
+		printf " - $pkg $MINOR_TEXT\n"
+		stow $STOW_ARGS $STOW_CMD $pkg
+		printf "$RESET_TEXT"
+	done
+
+	printf "Done\n"
+	return 0
+}
+
+case $COMMAND in
+	"list" | "l")
+		for pkg in $(cd $DOTFILES_DIR && ls -d */); do
+			printf "${pkg%/} "
+		done
+		printf "\n"
+		;;
+	"install" | "i")
+		execute_stow --stow Installing $@
+		;;
+	"refresh" | "r")
+		execute_stow --restow Refreshing $@
+		;;
+	"delete" | "d")
+		execute_stow --delete Deleting $@
+		;;
+	"help" | "h" | "--help" | "-h")
+		print_usage
+		;;
+	*)
+		printf "Invalid command: $COMMAND\n"
+		print_usage
+		exit 1
+		;;
+esac
+
+exit 0
