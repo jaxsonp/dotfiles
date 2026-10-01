@@ -36,9 +36,6 @@ alias ls="ls -h --color=auto"
 alias la="ls -a"
 alias ll="ls -al"
 
-# python
-alias python=python3
-
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
